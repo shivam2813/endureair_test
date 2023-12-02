@@ -1,5 +1,9 @@
 from flask import Flask ,jsonify
+from flask_cors import CORS
+
+
 app=Flask(__name__)
+CORS(app)
 
 itemList = [{
         "itemName" : "Rice",
@@ -33,12 +37,16 @@ itemList = [{
     }]
 
 
-@app.route('/')
+@app.route('/data')
 def itemdata():
     try:
         return jsonify(success="y",data=itemList)
     except:
         return jsonify(success="n")
     
+
+if __name__=='__main__':
+    app.run(host="127.0.0.1",port=2003)
+
 
 
